@@ -6,7 +6,20 @@ namespace PracticeOfException
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //TestNestedTryCatch();
+            TestJustPrint();
+        }
+
+        private static void TestNestedTryCatch()
+        {
+            var nestedTryCatch = new NestedTryCatch();
+            nestedTryCatch.OutsideMethodA();
+        }
+
+        private static async void TestJustPrint()
+        {
+            var justPrint = new JustPrintWhenException();
+            await justPrint.DownloadContent(null);
         }
     }
 }
