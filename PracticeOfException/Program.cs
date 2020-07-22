@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace PracticeOfException
 {
@@ -7,7 +8,9 @@ namespace PracticeOfException
         static void Main(string[] args)
         {
             //TestNestedTryCatch();
-            TestJustPrint();
+            //TestJustPrint();
+            TestRetryWhenException();
+            Console.ReadKey();
         }
 
         private static void TestNestedTryCatch()
@@ -20,6 +23,13 @@ namespace PracticeOfException
         {
             var justPrint = new JustPrintWhenException();
             await justPrint.DownloadContent(null);
+        }
+
+        private static async void TestRetryWhenException()
+        {
+            var retryHandler = new HttpClientRetry();
+            var respone = await retryHandler.HandleHttpRequestExceptionAsync();
+            Console.WriteLine(respone);
         }
     }
 }
