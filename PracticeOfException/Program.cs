@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 
 namespace PracticeOfException
@@ -7,9 +8,12 @@ namespace PracticeOfException
     {
         static void Main(string[] args)
         {
+            
             //TestNestedTryCatch();
             //TestJustPrint();
-            TestRetryWhenException();
+            // TestRetryWhenException();
+            TopLevelTryCatch();
+
             Console.ReadKey();
         }
 
@@ -30,6 +34,18 @@ namespace PracticeOfException
             var retryHandler = new HttpClientRetry();
             var respone = await retryHandler.HandleHttpRequestExceptionAsync();
             Console.WriteLine(respone);
+        }
+
+        private static void TopLevelTryCatch()
+        {
+            try
+            {
+                new ClassA().MethodA();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
     }
 }
